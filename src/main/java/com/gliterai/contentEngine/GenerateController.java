@@ -2,12 +2,11 @@ package com.gliterai.contentEngine;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class GenerateController {
@@ -37,5 +36,21 @@ public class GenerateController {
         response.put("message","Job queued successfully");
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+    }
+
+    @GetMapping("/jobs/{id}")
+    public ResponseEntity<Map<String, Object>> getJobStatus(@PathVariable UUID id) {
+        return jobRepository.findById(id).map(job -> {)
+            Map<String, Object> response = new HashMap<>();
+            response.put("jobId", job.getId());
+            response.put("status", job.getStatus());
+            if("completed".equals(job.getStatus()) && job.getResultImgUrl() != null)
+                response.put("resultImgUrl", job.getResultImgUrl());
+            return ResponseEntity.ok(response);
+        }).orElseGet(() -> {
+            Map<String, Object> response = new HashMap<>();
+            response.put("error", "Job not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        });
     }
 }
