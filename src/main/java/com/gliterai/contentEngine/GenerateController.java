@@ -40,17 +40,13 @@ public class GenerateController {
 
     @GetMapping("/jobs/{id}")
     public ResponseEntity<Map<String, Object>> getJobStatus(@PathVariable UUID id) {
-        return jobRepository.findById(id).map(job -> {)
+        return jobRepository.findById(id).map(job -> {
             Map<String, Object> response = new HashMap<>();
             response.put("jobId", job.getId());
             response.put("status", job.getStatus());
             if("completed".equals(job.getStatus()) && job.getResultImgUrl() != null)
                 response.put("resultImgUrl", job.getResultImgUrl());
             return ResponseEntity.ok(response);
-        }).orElseGet(() -> {
-            Map<String, Object> response = new HashMap<>();
-            response.put("error", "Job not found");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-        });
+        }).orElse(ResponseEntity.notFound().build());
     }
 }
