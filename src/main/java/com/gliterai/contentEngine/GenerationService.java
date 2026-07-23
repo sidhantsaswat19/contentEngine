@@ -23,7 +23,7 @@ public class GenerationService {
 
             Thread.sleep(5000); // Simulate processing time
 
-            job.setResultImgUrl("img.png");
+            job.setProductImgUrl("img.png");
             job.setStatus("completed");
 
         } catch (InterruptedException e) {
