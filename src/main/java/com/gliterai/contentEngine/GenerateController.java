@@ -44,8 +44,10 @@ public class GenerateController {
             Map<String, Object> response = new HashMap<>();
             response.put("jobId", job.getId());
             response.put("status", job.getStatus());
-            if("completed".equals(job.getStatus()) && job.getResultImgUrl() != null)
+            if("completed".equals(job.getStatus()) && job.getResultImgUrl() != null) {
                 response.put("resultImgUrl", job.getResultImgUrl());
+                response.put("prompt", job.getPrompt());
+            }
             return ResponseEntity.ok(response);
         }).orElse(ResponseEntity.notFound().build());
     }

@@ -41,4 +41,10 @@ public class Job {
     public void setProductDescription(String productDescription) {
         this.description = productDescription;
     }
+
+    @Column(columnDefinition = "TEXT")
+    private String prompt;
+
+    public String getPrompt() {return prompt;}
+    public void setPrompt(String prompt) {this.prompt = prompt;}
 }
