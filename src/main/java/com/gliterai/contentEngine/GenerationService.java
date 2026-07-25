@@ -2,10 +2,7 @@ package com.gliterai.contentEngine;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -62,6 +59,7 @@ public class GenerationService {
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("ngrok-skip-browser-warning", "true");
             HttpEntity<Map<String,Object>> request = new HttpEntity<>(promptRequest, headers);
 
             ResponseEntity<Map> response = restTemplate.postForEntity(comfyuiApiUrl+"/prompt", request, Map.class);
@@ -98,6 +96,7 @@ public class GenerationService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.set("ngrok-skip-browser-warning", "true");
         HttpEntity<MultiValueMap<String,Object>> request = new HttpEntity<>(body, headers);
 
         ResponseEntity<Map> response = restTemplate.postForEntity(comfyuiApiUrl+"/upload", request, Map.class);
@@ -111,7 +110,14 @@ public class GenerationService {
         for(int i=0; i<maxAttempts; i++) {
             Thread.sleep(2000);
 
-            ResponseEntity<Map> response = restTemplate.getForEntity(comfyuiApiUrl+"/status/"+promptId, Map.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("ngrok-skip-browser-warning", "true");
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    comfyuiApiUrl+"/history/"+promptId, HttpMethod.GET,entity,Map.class
+            );
+            //ResponseEntity<Map> response = restTemplate.getForEntity(comfyuiApiUrl+"/status/"+promptId, Map.class);
             Map<String,Object> history = response.getBody();
 
             if(history!=null && history.containsKey(promptId)) {
