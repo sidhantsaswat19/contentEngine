@@ -30,7 +30,7 @@ public class Job {
     public String getStatus() {return status;}
     public void setStatus(String status) {this.status = status;}
     public String getResultImgUrl() {return resultImgUrl;}
-    //public void setResultImgUrl(String resultImgUrl) {this.resultImgUrl = resultImgUrl;}
+    public void setResultImgUrl(String resultImgUrl) {this.resultImgUrl = resultImgUrl;}
     public LocalDateTime getCreatedAt() {return createdAt;}
     public void setCreatedAt(LocalDateTime createdAt) {this.createdAt = createdAt;}
 
