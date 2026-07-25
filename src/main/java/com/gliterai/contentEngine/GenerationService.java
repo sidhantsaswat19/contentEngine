@@ -134,7 +134,7 @@ public class GenerationService {
     }
 
     private String callGeminiAPI(String promptText) {
-        String url = "https://api.gemini.com/api/v1/products/" + apiKey + "/images/";
+        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
 
         Map<String, Object> requestBody = Map.of(
                 "contents", List.of(
