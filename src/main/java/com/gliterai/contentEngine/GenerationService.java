@@ -156,7 +156,7 @@ public class GenerationService {
             return (String) parts.get(0).get("text");
         }catch (Exception e){
             System.err.println("Error calling Gemini API: " + e.getMessage());
-            return "High quality photo of "+promptText;
+            return "professional aesthetic product photography, cozy outdoor summer picnic setting on a clean white linen blanket, natural soft sunlight, photorealistic, cinematic lighting, 8k resolution, crisp focus, high detail, warm vibrant tones";
         }
     }
 
