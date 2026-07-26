@@ -83,36 +83,40 @@ An asynchronous, full-stack AI content engine built with **Spring Boot**, **Post
 POST /generate
 Content-Type: application/json
 ```
-Request Body:JSON{
+## Request Body:JSON{
   "productName": "Florentine Wooden Salad Bowl",
   "description": "A match made in summer - salads and wooden bowls...",
   "productImageUrl": "[https://www.chumbak.com/cdn/shop/files/1_0e96da8e-e4d6-4e42-883c-56c29524d41a.jpg](https://www.chumbak.com/cdn/shop/files/1_0e96da8e-e4d6-4e42-883c-56c29524d41a.jpg)"
 }
 
-Response (202 Accepted):JSON{
+## Response (202 Accepted):JSON{
   "jobId": "123e4567-e89b-12d3-a456-426614174000",
   "status": "pending"
 }
 
-Fetch Job StatusHTTPGET /jobs/{jobId}
+## Fetch Job StatusHTTPGET /jobs/{jobId}
 Response (200 OK - Processing):JSON{
   "jobId": "123e4567-e89b-12d3-a456-426614174000",
   "status": "processing",
   "promptUsed": "professional aesthetic product photography, handpainted wooden salad bowl..."
 }
 
-Response (200 OK - Completed):JSON{
+## Response (200 OK - Completed):JSON{
   "jobId": "123e4567-e89b-12d3-a456-426614174000",
   "status": "completed",
   "resultImageUrl": "[https://xxxx.ngrok-free.app/view?filename=ComfyUI_00001_.png&type=output](https://xxxx.ngrok-free.app/view?filename=ComfyUI_00001_.png&type=output)",
   "promptUsed": "professional aesthetic product photography, handpainted wooden salad bowl..."
 }
 
-##⚙️ Environment ConfigurationSet the following variables in your environment or application.properties:VariableDescriptionSPRING_DATASOURCE_URLPostgreSQL JDBC connection string (jdbc:postgresql://...)SPRING_DATASOURCE_USERNAMEDatabase usernameSPRING_DATASOURCE_PASSWORDDatabase passwordGEMINI_API_KEYGoogle Gemini API keyCOMFYUI_API_URLActive Ngrok public tunnel URL (e.g., https://xxxx.ngrok-free.app)
 
-##🏃 Local Setup Instructions
+## 🏃 Local Setup Instructions
 Clone the repository:Bashgit clone [https://github.com/your-username/content-engine.git](https://github.com/your-username/content-engine.git)
 cd content-engine
 
-Setup ComfyUI on Colab:Open the provided notebook in Google Colab with a GPU (T4) hardware accelerator.Enter your Ngrok Authtoken and execute all cells.Copy the public Ngrok endpoint URL (e.g., https://xxxx.ngrok-free.app).Configure Environment Variables:Update src/main/resources/application.properties with your database credentials, Gemini API key, and the Ngrok URL.Build and run the application:Bash./mvnw spring-boot:run
+## Setup ComfyUI on Colab:
+Open the provided notebook in Google Colab with a GPU (T4) hardware accelerator.Enter your Ngrok Authtoken and execute all cells.
+Copy the public Ngrok endpoint URL (e.g., https://xxxx.ngrok-free.app).
+
+## Configure Environment Variables:
+Update src/main/resources/application.properties with your database credentials, Gemini API key, and the Ngrok URL.Build and run the application:Bash./mvnw spring-boot:run
 Access the application:Open http://localhost:8080 in your web browser.
