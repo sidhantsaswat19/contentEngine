@@ -83,25 +83,30 @@ An asynchronous, full-stack AI content engine built with **Spring Boot**, **Post
 POST /generate
 Content-Type: application/json
 ```
-## Request Body:JSON{
+## Request Body:
+JSON{
   "productName": "Florentine Wooden Salad Bowl",
   "description": "A match made in summer - salads and wooden bowls...",
   "productImageUrl": "[https://www.chumbak.com/cdn/shop/files/1_0e96da8e-e4d6-4e42-883c-56c29524d41a.jpg](https://www.chumbak.com/cdn/shop/files/1_0e96da8e-e4d6-4e42-883c-56c29524d41a.jpg)"
 }
 
-## Response (202 Accepted):JSON{
+## Response (202 Accepted):
+JSON{
   "jobId": "123e4567-e89b-12d3-a456-426614174000",
   "status": "pending"
 }
 
-## Fetch Job StatusHTTPGET /jobs/{jobId}
-Response (200 OK - Processing):JSON{
+## Fetch Job Status HTTPGET /jobs/{jobId}
+
+## Response (200 OK - Processing):
+JSON{
   "jobId": "123e4567-e89b-12d3-a456-426614174000",
   "status": "processing",
   "promptUsed": "professional aesthetic product photography, handpainted wooden salad bowl..."
 }
 
-## Response (200 OK - Completed):JSON{
+## Response (200 OK - Completed):
+JSON{
   "jobId": "123e4567-e89b-12d3-a456-426614174000",
   "status": "completed",
   "resultImageUrl": "[https://xxxx.ngrok-free.app/view?filename=ComfyUI_00001_.png&type=output](https://xxxx.ngrok-free.app/view?filename=ComfyUI_00001_.png&type=output)",
