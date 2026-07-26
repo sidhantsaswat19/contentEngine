@@ -76,6 +76,7 @@ public class GenerationService {
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+            e.printStackTrace();
             throw new RuntimeException("Job processing interrupted", e);
         } finally{
             jobRepository.save(job);
