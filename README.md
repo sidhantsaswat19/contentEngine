@@ -8,8 +8,8 @@ An asynchronous, full-stack AI content engine built with **Spring Boot**, **Post
 
 * **Live Hosted Application:** [https://contentengine-e94p.onrender.com/](https://contentengine-e94p.onrender.com/)
 * **ComfyUI Saved Workflow (JSON):** [`./comfyui_workflow.json`](./comfyui_workflow.json)
-* **Sample Output 1:** [`./output_1.png`](./output_1.png)
-* **Sample Output 2:** [`./output_2.png`](./output_2.png)
+* **Sample Output 1:** [`./output_1.png`](./Output_1.png)
+* **Sample Output 2:** [`./output_2.png`](./Output_2.png)
 
 ---
 
